@@ -272,6 +272,20 @@ It is also recommended to install the C# extension and the Docker extension for 
 
 ![](images/Windows-setup/vs-code-3-extensions.png)
 
+## Optional - To run WebSPA project via Visual Studio 2022 in debug mode:
+
+1.  Update the Dockerfile in WebSPA project(src/Web/WebSPA/Dockerfile) to insert below instructions after WORKDIR /app
+
+    RUN apt-get update
+    RUN apt-get -y install curl gnupg
+    RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+    RUN apt-get -y install nodejs
+    RUN npm install
+    RUN npm -v
+
+2.  Update the value for webspa.environment in docker-compose.override.yml as follows:
+    ASPNETCORE_ENVIRONMENT=Development
+
 ## Explore the code
 
 You should be now ready to begin learning by [exploring the code](Explore-the-code) and debugging eShopOnContainers.
